@@ -1,0 +1,6 @@
+// 2022-09-05 00:21:33
+/// scr_resizeBlock(id, time)
+
+var imgh = sprite_get_height(spr_block);
+
+id.sprite_height = imgh*time;

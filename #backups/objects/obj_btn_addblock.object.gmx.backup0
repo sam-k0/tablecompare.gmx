@@ -1,0 +1,78 @@
+// 2022-09-05 00:32:58
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+sprite_index = spr_addBlock;
+uses_physics = false;
+
+#event create Setup
+
+image_speed = 0;
+image_index = 0;
+eventid = 0;
+
+#event mouse_left_press Create instance of block
+
+var newblock = instance_create(-200,0, obj_block) // create the new block somewhere offscreen
+
+eventid = get_string_async("Starting time (HH:MM). Not using a colon (ex.: 90) will result in 1 hour and 30 minutes.", "01:30");
+
+#event mouse_enter Change sprite
+
+image_index = 1;
+
+#event mouse_leave Change sprite
+
+image_index = 0;
+
+#event async_dialog get result
+var i_d = ds_map_find_value(async_load, "id");
+if (i_d == eventid)
+{
+    if ds_map_find_value(async_load, "status") // okay
+    {
+        if ds_map_find_value(async_load, "result") != "" // not empty
+        {
+            var btimestr = ds_map_find_value(async_load, "result"); // get the val
+            var delim = string_pos(":", btimestr);
+            
+            if(delim == 0) // : missing, maybe only minutes???
+            {
+                var bhours = int64(btimestr) div 60;
+                var bminutes = int64(btimestr) mod 60;
+                
+                show_debug_message("hours: " + string(bhours))
+                show_debug_message("minutes: " +string(bminutes))
+                //exit; // exit event
+            }
+            else
+            {
+                var bhours = 0;
+                var bminutes = 0;
+                
+                bhours = int64(string_copy(btimestr,1,delim-1)); // From 0-:
+                bminutes = int64(string_copy(btimestr, delim + 1, string_length(btimestr))) // :-end
+                
+                bhours += bminutes div 60;
+                bminutes = bminutes mod 60;
+                
+                show_debug_message("hours: " + string(bhours))
+                show_debug_message("minutes: " +string(bminutes))
+                
+                //for(var i = 0; i < string_length(btimestr))
+                
+                
+            }
+        }
+        else
+        {
+            // abort
+            show_debug_message("Add aborted: No string supplied");
+        }
+    }
+    else
+    {
+        show_debug_message("Add aborted: User cancelled")
+    }
+}
+
+

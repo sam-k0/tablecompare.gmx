@@ -1,0 +1,13 @@
+// 2022-09-05 00:00:21
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+sprite_index = spr_block;
+uses_physics = false;
+
+#event create
+time = 5;
+starttime = 0;
+endtime = starttime + time;
+weekday = DAY_MONDAY;
+
+scr_resizeBlock(id, time);

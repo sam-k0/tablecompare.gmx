@@ -1,0 +1,44 @@
+// 2022-09-05 00:13:41
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+uses_physics = false;
+sprite_index = spr_addBlock;
+
+#event create Setup
+
+image_speed = 0;
+image_index = 0;
+
+#event mouse_enter Change sprite
+
+image_index = 1;
+
+#event mouse_leave Change sprite
+
+image_index = 0;
+
+#event mouse_left_press Create instance of block
+
+var newblock = instance_create(-200,0, obj_block) // create the new block somewhere offscreen
+
+var btimestr = get_string_async("Starting time (HH:MM)", "01:30");
+var delim = string_pos(":", btimestr);
+
+if(delim == 0) // : missing
+{
+    instance_destroy(newblock);
+    exit; // exit event
+}
+else
+{
+    var bhours = 0;
+    var bminutes = 0;
+    
+    bhours = (string_copy(btimestr,1,delim)); // From 0-:
+    bminutes = (string_copy(btimestr, delim + 1, string_length(btimestr))) // :-end
+    
+    show_debug_message("hours: " + string(bhours))
+    show_debug_message("minutes: " +string(bminutes))
+    
+    //for(var i = 0; i < string_length(btimestr))
+}
