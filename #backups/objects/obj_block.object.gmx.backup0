@@ -1,13 +1,11 @@
-// 2022-09-05 00:15:20
+// 2022-09-05 17:57:52
 #event properties (no comments/etc. here are saved)
 parent_index = -1;
 sprite_index = spr_block;
 uses_physics = false;
 
 #event create
-time = 5;
+
 starttime = 0;
-endtime = starttime + time;
-
-
-scr_resizeBlock(id, time);
+endtime = 0;
+yoffset = 0;

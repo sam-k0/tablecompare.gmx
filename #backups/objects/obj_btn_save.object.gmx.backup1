@@ -1,0 +1,35 @@
+// 2022-09-05 18:17:05
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+sprite_index = spr_saveIco;
+uses_physics = false;
+
+
+#event create Setup
+text = "Save"
+event_savebtn = -99;
+
+#event mouse_left_press save to file
+
+event_savebtn = get_string_async("Enter name to save timetable as: ", "mytable");
+
+#event async_dialog Callback
+
+var i_d = ds_map_find_value(async_load, "id");
+if (i_d == event_savebtn)
+{
+    if ds_map_find_value(async_load, "status") // okay
+    {
+        if ds_map_find_value(async_load, "result") != "" // not empty
+        {
+            scr_saveTableInstances(ds_map_find_value(async_load, "result") + ".table");
+            show_debug_message("Saved to file!");
+        }
+    }
+}
+
+#event draw GUI Text
+
+draw_self();
+draw_set_font(fnt_timetable);
+draw_set_halign(fa_center);

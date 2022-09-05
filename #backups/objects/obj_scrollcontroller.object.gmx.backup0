@@ -1,0 +1,80 @@
+// 2022-09-05 17:48:12
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+uses_physics = false;
+
+#event create
+scrolloffset = 0; // The y offset for scrolling haha
+scrollspeed = 22; // 4 pixel per scroll
+
+#event mouse_wheel_up Scroll
+
+scrolloffset += scrollspeed;
+
+scr_addScroll(scrolloffset);
+
+#event mouse_wheel_down Scroll
+
+scrolloffset -= scrollspeed;
+
+scr_addScroll(scrolloffset);
+
+#event draw draw lines for chunks
+draw_set_halign(fa_center);
+draw_set_font(fnt_timetable)
+// cps = 64, cs = 30
+for(var i = 0; i < (24 * (60 / global.chunksize)) + 1; i ++)
+{
+    var liney = i * global.chunkpixelsize + scrolloffset;
+    draw_line(0,liney, BLOCK_WIDTH * 8, liney); // vertical line for one chunk
+    
+    var timemin = global.chunksize * i;
+    var timestr = string(timemin div 60) + ":" + string(timemin mod 60)
+    
+    if(timemin mod 60 == 0) // When it would be 12:0, append a 0
+    {
+        timestr += "0";
+    }
+    
+    // Wilder shit mit zoomen und ungeraden times, also bei 12:0 muss ne 0 dran,
+    // und es kann passieren dass durch zoom sowas wie 12:3333333 rauskommt ehh
+    /*var timerest = timemin mod global.chunksize;
+    
+    if(string_length(string(timerest) == 0)
+    {
+        timestr += "00";
+    }
+    else*/
+    
+    draw_text(BLOCK_WIDTH / 2, liney, timestr)
+    
+}
+
+// Draw scrollspeed
+
+draw_text(room_width - BLOCK_WIDTH/2, BLOCK_WIDTH ,"Scroll#speed#" + string(scrollspeed))
+draw_set_halign(fa_left);
+
+#event keypress:vk_up chunk scroll
+
+if(scrolloffset mod global.chunkpixelsize != 0) // Uneven scroll position, snap to grid
+{
+    scrolloffset = (scrolloffset div global.chunkpixelsize) * global.chunkpixelsize;
+}
+else
+{
+    scrolloffset += global.chunkpixelsize;
+}
+
+#event keypress:vk_down chunk scroll
+
+if(scrolloffset mod global.chunkpixelsize != 0) // Uneven scroll position, snap to grid
+{
+    scrolloffset = (scrolloffset div global.chunkpixelsize) * global.chunkpixelsize;
+}
+else
+{
+    scrolloffset -= global.chunkpixelsize;
+}
+
+

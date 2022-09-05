@@ -1,0 +1,32 @@
+// 2022-09-05 18:42:08
+/// scr_loadTableInstances(filename)
+
+#args filename
+
+var file = file_text_open_read(filename);
+var jstring = "";
+while (!file_text_eof(file))
+{
+    jstring += file_text_readln(file);
+}
+file_text_close(file);
+
+var map = json_decode(jstring);
+
+var cnt = int64(map[?"count"]);
+
+for(var i = 0; i < cnt; i++)
+{
+    var inst = instance_create(-200, 0, obj_block);
+    var vmap = ds_map_find_value(map, string(i));
+    
+    inst.yoffset = vmap[?"yoffset"];
+    inst.image_yscalevmap = vmap[?"imgyscale"] ;
+    
+    
+    inst.x = vmap[?"xx"];
+    inst.y = vmap[?"yy"] ;
+    
+    inst.starttime = date_create_datetime(2022,0,0,int64(vmap[?"sdate_hour"]), int64(vmap[?"sdate_minute"]), 0);
+    inst.endtime = date_create_datetime(2022,0,0,int64(vmap[?"edate_hour"]), int64(vmap[?"edate_minute"]), 0)
+}

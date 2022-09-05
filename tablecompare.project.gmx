@@ -10,15 +10,37 @@
   <sprites name="sprites">
     <sprite>sprites\spr_addBlock</sprite>
     <sprite>sprites\spr_block</sprite>
+    <sprite>sprites\spr_arrow</sprite>
+    <sprite>sprites\spr_saveIco</sprite>
+    <sprite>sprites\spr_loadIco</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bgts_table</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_resizeBlock.gml</script>
+    <script>scripts\scr_createBlock.gml</script>
+    <script>scripts\scr_addScroll.gml</script>
+    <script>scripts\scr_saveTableInstances.gml</script>
+    <script>scripts\scr_loadTableInstances.gml</script>
+    <script>scripts\scr_blockDateToStr.gml</script>
+    <script>scripts\str.gml</script>
+    <script>scripts\pragma_holder.gml</script>
+    <script>scripts\pragmacode.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_timetable</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_block</object>
     <object>objects\obj_btn_addblock</object>
+    <object>objects\obj_scrollcontroller</object>
+    <object>objects\obj_btn_save</object>
+    <object>objects\obj_btn_load</object>
+    <object>objects\obj_btn_incrScroll</object>
+    <object>objects\obj_btn_decrScroll</object>
+    <object>objects\obj_debugwatcher</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>

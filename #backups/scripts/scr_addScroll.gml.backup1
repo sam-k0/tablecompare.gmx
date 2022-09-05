@@ -1,0 +1,9 @@
+// 2022-09-05 14:13:26
+/// scr_addScroll( scrolloffset)
+var scrolloffs = argument0;
+
+for(var i = 0; i < instance_number(obj_block); i++)
+{
+    var inst = instance_find(obj_block, i);
+    inst.y = inst.yoffset + scrolloffs;
+}

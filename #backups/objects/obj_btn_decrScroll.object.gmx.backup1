@@ -1,0 +1,16 @@
+// 2022-09-05 17:33:27
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+uses_physics = false;
+sprite_index = spr_arrow
+
+#event create Setup
+image_speed = 0;
+image_index = 1;
+
+#event mouse_left_press Decrease scroll speed
+
+with(obj_scrollcontroller)
+{
+    scrollspeed -= 2;
+}

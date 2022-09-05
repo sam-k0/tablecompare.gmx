@@ -26,10 +26,19 @@
           <argument>
             <kind>1</kind>
             <string>/// Setup
-
+image_alpha = 0.5;
 image_speed = 0;
 image_index = 0;
-eventid = 0;
+eventid_starttime = -999;
+eventid_endtime = -9999;
+last_block = noone;
+
+bhours_start = 0;
+bhours_end = 0;
+bminutes_start = 0;
+bminutes_end = 0;
+
+weekday = "undefined"
 </string>
           </argument>
         </arguments>
@@ -104,9 +113,7 @@ image_index = 1;
             <kind>1</kind>
             <string>/// Create instance of block
 
-var newblock = instance_create(-200,0, obj_block) // create the new block somewhere offscreen
-
-eventid = get_string_async("Starting time (HH:MM). Not using a colon (ex.: 90) will result in 1 hour and 30 minutes.", "01:30");
+eventid_starttime = get_string_async("Starting time (HH:MM). Not using a colon (ex.: 90) will result in 1 hour and 30 minutes.", "07:30");
 </string>
           </argument>
         </arguments>
@@ -131,7 +138,7 @@ eventid = get_string_async("Starting time (HH:MM). Not using a colon (ex.: 90) w
             <kind>1</kind>
             <string>/// get result
 var i_d = ds_map_find_value(async_load, "id");
-if (i_d == eventid)
+if (i_d == eventid_starttime)
 {
     if ds_map_find_value(async_load, "status") // okay
     {
@@ -139,11 +146,13 @@ if (i_d == eventid)
         {
             var btimestr = ds_map_find_value(async_load, "result"); // get the val
             var delim = string_pos(":", btimestr);
+            var bhours = 0;
+            var bminutes = 0;
             
             if(delim == 0) // : missing, maybe only minutes???
             {
-                var bhours = int64(btimestr) div 60;
-                var bminutes = int64(btimestr) mod 60;
+                bhours = int64(btimestr) div 60;
+                bminutes = int64(btimestr) mod 60;
                 
                 show_debug_message("hours: " + string(bhours))
                 show_debug_message("minutes: " +string(bminutes))
@@ -151,8 +160,7 @@ if (i_d == eventid)
             }
             else
             {
-                var bhours = 0;
-                var bminutes = 0;
+
                 
                 bhours = int64(string_copy(btimestr,1,delim-1)); // From 0-:
                 bminutes = int64(string_copy(btimestr, delim + 1, string_length(btimestr))) // :-end
@@ -162,11 +170,77 @@ if (i_d == eventid)
                 
                 show_debug_message("hours: " + string(bhours))
                 show_debug_message("minutes: " +string(bminutes))
-                
-                //for(var i = 0; i &lt; string_length(btimestr))
-                
-                
+
             }
+            
+            bminutes_start = bminutes;
+            bhours_start = bhours;
+            
+            eventid_endtime = get_string_async("End time (HH:MM). Not using a colon (ex.: 90) will result in 1 hour and 30 minutes.", "9:30") 
+            
+            /*var totaltimemin = (bhours*60 + bminutes);
+            var chunktime = 30; // min of one chunk
+            var chunkspawnsize = 64;
+            var chunks = totaltimemin div chunktime; // one chunk = 30 min
+            var rest = totaltimemin mod chunktime; // the rest
+            var yspawn = chunks * chunkspawnsize + (rest / chunktime)*chunkspawnsize;
+            
+            last_block = instance_create(x - BLOCK_WIDTH/2, yspawn, obj_block);
+            last_block.starttime = date_create_datetime(2022,0,0,bhours, bminutes, 0); // create date
+            last_block.yoffset = yspawn;*/
+            
+        }
+        else
+        {
+            // abort
+            show_debug_message("Add aborted: No string supplied");
+        }
+    }
+    else
+    {
+        show_debug_message("Add aborted: User cancelled")
+    }
+}
+
+// Endtime
+if (i_d == eventid_endtime)
+{
+    if ds_map_find_value(async_load, "status") // okay
+    {
+        if ds_map_find_value(async_load, "result") != "" // not empty
+        {
+            var btimestr = ds_map_find_value(async_load, "result"); // get the val
+            var delim = string_pos(":", btimestr);
+            var bhours = 0;
+            var bminutes = 0;
+            
+            if(delim == 0) // : missing, maybe only minutes???
+            {
+                bhours = int64(btimestr) div 60;
+                bminutes = int64(btimestr) mod 60;
+                
+                show_debug_message("hours: " + string(bhours))
+                show_debug_message("minutes: " +string(bminutes))
+                //exit; // exit event
+            }
+            else
+            {
+                bhours = int64(string_copy(btimestr,1,delim-1)); // From 0-:
+                bminutes = int64(string_copy(btimestr, delim + 1, string_length(btimestr))) // :-end
+                
+                bhours += bminutes div 60;
+                bminutes = bminutes mod 60;
+                
+                show_debug_message("hours: " + string(bhours))
+                show_debug_message("minutes: " +string(bminutes))
+
+            }
+            
+            bminutes_end = bminutes;
+            bhours_end = bhours;
+            // Create the block with given times
+            scr_createBlock(bhours_start, bminutes_start, bhours_end, bminutes_end);
+            
         }
         else
         {
@@ -181,6 +255,36 @@ if (i_d == eventid)
 }
 
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw weekday
+
+draw_self();
+
+draw_set_font(fnt_timetable);
+draw_set_halign(fa_center);
+draw_text(x,y-sprite_height, weekday);
 
 </string>
           </argument>
