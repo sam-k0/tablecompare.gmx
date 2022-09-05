@@ -13,6 +13,7 @@
     <sprite>sprites\spr_arrow</sprite>
     <sprite>sprites\spr_saveIco</sprite>
     <sprite>sprites\spr_loadIco</sprite>
+    <sprite>sprites\spr_checkboxIco</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgts_table</background>
@@ -41,6 +42,7 @@
     <object>objects\obj_btn_incrScroll</object>
     <object>objects\obj_btn_decrScroll</object>
     <object>objects\obj_debugwatcher</object>
+    <object>objects\obj_btn_snapvert</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>

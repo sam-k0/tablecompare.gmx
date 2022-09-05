@@ -31,6 +31,35 @@ endtime = 0;
 yoffset = 0;
 text = "undefined"
 hovered = false;
+selected = false;
+grabbed = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(grabbed)
+{
+    x = mouse_x - sprite_width/2;
+    y = mouse_y - image_yscale / 2;
+}
 </string>
           </argument>
         </arguments>
@@ -54,6 +83,7 @@ hovered = false;
           <argument>
             <kind>1</kind>
             <string>hovered = false;
+depth = -1
 </string>
           </argument>
         </arguments>
@@ -77,6 +107,105 @@ hovered = false;
           <argument>
             <kind>1</kind>
             <string>hovered = true;
+depth = -2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set grabbed and snap
+var inst = instance_place(x,y,obj_block);
+if(x div BLOCK_WIDTH &gt; 0 and x div BLOCK_WIDTH &lt; 8 and inst == noone)
+{
+    grabbed = false;
+    
+    /// snap
+    
+    x = (mouse_x div BLOCK_WIDTH) * BLOCK_WIDTH;
+    
+    // snap vertically
+    if(obj_btn_snapvert.checked)
+    {
+        var scrolloffs = (abs(obj_scrollcontroller.scrolloffset) mod global.chunkpixelsize);
+        y = ((mouse_y - image_yscale/2) div global.chunkpixelsize) * global.chunkpixelsize - scrolloffs; // das ist sus
+    }
+    yoffset = y + abs(obj_scrollcontroller.scrolloffset); // update offset!!
+}
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set grabbed
+grabbed = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>selected = !selected
+
+if(image_blend == c_white)
+{
+    image_blend = c_aqua;
+}
+else
+{   image_blend = c_white;
+}
 </string>
           </argument>
         </arguments>
@@ -114,10 +243,59 @@ if(hovered)
     draw_set_halign(fa_center);
     draw_text(mouse_x + sqrsize, mouse_y, text + "#"+
         "Start: " + string(scr_blockDateToStr(starttime)) + "#" + 
-        "End: " + string(scr_blockDateToStr(endtime))
+        "End: " + string(scr_blockDateToStr(endtime))+ "##"+
+        "Click to select,#DEL to delete."
         )
     draw_set_alpha(1);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="46">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// delete
+instance_destroy()
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// delete
+instance_destroy()
 </string>
           </argument>
         </arguments>
