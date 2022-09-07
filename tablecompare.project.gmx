@@ -29,6 +29,8 @@
     <script>scripts\str.gml</script>
     <script>scripts\pragma_holder.gml</script>
     <script>scripts\pragmacode.gml</script>
+    <script>scripts\scr_pixelsToMinutes.gml</script>
+    <script>scripts\scr_getScrolloffset.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_timetable</font>

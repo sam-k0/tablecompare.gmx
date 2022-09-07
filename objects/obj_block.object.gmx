@@ -131,7 +131,7 @@ depth = -2;
           <argument>
             <kind>1</kind>
             <string>/// set grabbed and snap
-var inst = instance_place(x,y,obj_block);
+var inst = instance_place((mouse_x div BLOCK_WIDTH) * BLOCK_WIDTH,y,obj_block);
 if(x div BLOCK_WIDTH &gt; 0 and x div BLOCK_WIDTH &lt; 8 and inst == noone)
 {
     grabbed = false;
@@ -146,7 +146,31 @@ if(x div BLOCK_WIDTH &gt; 0 and x div BLOCK_WIDTH &lt; 8 and inst == noone)
         var scrolloffs = (abs(obj_scrollcontroller.scrolloffset) mod global.chunkpixelsize);
         y = ((mouse_y - image_yscale/2) div global.chunkpixelsize) * global.chunkpixelsize - scrolloffs; // das ist sus
     }
+    
+    
     yoffset = y + abs(obj_scrollcontroller.scrolloffset); // update offset!!
+    
+    
+    // Update die Event timestamps (needs refactor xd)
+    var tm = scr_pixelsToMinutes(y)
+    var h = tm div 60;
+    var m = tm mod 60;
+    
+    
+    var scrolloffset = (obj_scrollcontroller.scrolloffset) * -1;
+    var scrollchunks = scrolloffset / global.chunkpixelsize;
+    
+    var smint = scrollchunks * global.chunksize;
+    var sh = round(smint div 60);
+    var sm = round(smint mod 60);
+    
+    starttime = date_create_datetime(2022,0,0,h+sh, m + sm, 0);
+    // endzeit
+    tm = scr_pixelsToMinutes(y + image_yscale)
+    h = tm div 60;
+    m = tm mod 60;
+    
+    endtime = date_create_datetime(2022,0,0,h+sh, m + sm, 0);
 }
 
 
@@ -271,7 +295,7 @@ if(hovered)
           <argument>
             <kind>1</kind>
             <string>/// delete
-instance_destroy()
+if(selected)instance_destroy()
 </string>
           </argument>
         </arguments>
@@ -295,7 +319,7 @@ instance_destroy()
           <argument>
             <kind>1</kind>
             <string>/// delete
-instance_destroy()
+if(selected)instance_destroy()
 </string>
           </argument>
         </arguments>

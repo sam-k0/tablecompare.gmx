@@ -26,7 +26,26 @@
           <argument>
             <kind>1</kind>
             <string>draw_text(x,y,"Blocks#"+string(instance_number(obj_block)));
-//draw_text(32,32,string();
+
+/*
+var tm = scr_pixelsToMinutes(mouse_y)
+var h = tm div 60;
+var m = tm mod 60;
+
+
+var scrolloffset = (obj_scrollcontroller.scrolloffset) * -1;
+var scrollchunks = scrolloffset / global.chunkpixelsize;
+
+var smint = scrollchunks * global.chunksize;
+var sh = round(smint div 60);
+var sm = round(smint mod 60);
+
+
+
+
+
+draw_text(32,32,string(h+sh) + ":" + string(m+sm));
+draw_text(32,48,"scrolloffs " + string(abs(obj_scrollcontroller.scrolloffset)));*/
 </string>
           </argument>
         </arguments>
