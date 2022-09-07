@@ -13,3 +13,9 @@ A very nieche use-case but maybe useful to some people.
 - "Load": Opens a window to select where you want to load a table from
 - Mouse Scroll Wheel: Move the view up and down
 - "Scroll Speed": Changes Scroll-speed for mouse scrolling
+
+# credit
+
+- KNU Logo is property of KNU
+- window_resize_fix is created by YAL
+- (ununsed) MAX_WINAPI2 by hobbl
