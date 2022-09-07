@@ -52,6 +52,7 @@
     <script>scripts\scr_pixelsToMinutes.gml</script>
     <script>scripts\scr_getScrolloffset.gml</script>
     <script>scripts\scr_codeToStr.gml</script>
+    <script>scripts\print.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_timetable</font>

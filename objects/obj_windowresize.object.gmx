@@ -32,10 +32,9 @@
     var wh = window_get_height();
     var ww = window_get_width();
     
-    //var scalef = wh / room_width;
-    //show_debug_message("scalef " + string(scalef));
+    var scalef = ww / room_width;
     
-    //window_set_size(room_width, room_height*scalef);
+    window_set_size(ww, room_height*scalef);
 }
 </string>
           </argument>
