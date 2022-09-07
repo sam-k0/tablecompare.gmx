@@ -4,7 +4,7 @@ var filename = argument0;
 
 if(!file_exists(filename))
 {
-    show_message_async("Could not find table " + filename)
+    show_message_async("Could not find table " + filename + "#Cancelled. " + scr_codeToStr(ERR_LOADCANCELLED))
     return 0;
 }
 

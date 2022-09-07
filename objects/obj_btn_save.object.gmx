@@ -52,7 +52,12 @@ event_savebtn = -99;
             <kind>1</kind>
             <string>/// save to file
 
-event_savebtn = get_string_async("Enter name to save timetable as: ", "mytable");
+//event_savebtn = get_string_async("Enter name to save timetable as: ", "mytable");
+
+file = get_save_filename("Timetable|*.table", "");
+
+scr_saveTableInstances(file);
+show_debug_message("Saved to file!");
 </string>
           </argument>
         </arguments>

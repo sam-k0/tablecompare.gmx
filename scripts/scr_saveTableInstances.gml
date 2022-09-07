@@ -2,6 +2,11 @@
 
 var filename = argument0;
 
+if(filename == "")
+{
+    show_message_async("Saving aborted.#"+scr_codeToStr(ERR_SAVEABORT))
+}
+
 var map = ds_map_create();
 var cnt = 0;
 
@@ -36,7 +41,7 @@ var jstring = json_encode(map);
 
 // write to file
 
-var file = file_text_open_write(working_directory + filename);
+var file = file_text_open_write(filename);
 
 file_text_write_string(file, jstring);
 

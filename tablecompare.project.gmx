@@ -3,8 +3,28 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles">
+    <datafile>
+      <name>window_resize_fix.html</name>
+      <exists>-1</exists>
+      <size>16825</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>window_resize_fix.html</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions>
     <extension index="0">extensions\Max winAPI 2</extension>
+    <extension index="1">extensions\window_resize_fix</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -31,6 +51,7 @@
     <script>scripts\pragmacode.gml</script>
     <script>scripts\scr_pixelsToMinutes.gml</script>
     <script>scripts\scr_getScrolloffset.gml</script>
+    <script>scripts\scr_codeToStr.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_timetable</font>
@@ -45,11 +66,14 @@
     <object>objects\obj_btn_decrScroll</object>
     <object>objects\obj_debugwatcher</object>
     <object>objects\obj_btn_snapvert</object>
+    <object>objects\obj_windowresize</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>
   </rooms>
-  <constants number="3">
+  <constants number="5">
+    <constant name="ERR_SAVEABORT">-201</constant>
+    <constant name="ERR_LOADCANCELLED">-200</constant>
     <constant name="BLOCK_TOPY">32</constant>
     <constant name="BLOCK_LEFTX">32</constant>
     <constant name="BLOCK_WIDTH">128</constant>

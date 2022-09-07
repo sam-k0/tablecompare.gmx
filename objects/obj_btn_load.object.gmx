@@ -52,7 +52,11 @@ event_savebtn = -99;
             <kind>1</kind>
             <string>/// save to file
 
-event_savebtn = get_string_async("Enter name to load timetable: ", "mytable");
+//event_savebtn = get_string_async("Enter name to load timetable: ", "mytable");
+
+file = get_open_filename("Timetable|*.table", "");
+
+scr_loadTableInstances(file);
 </string>
           </argument>
         </arguments>
