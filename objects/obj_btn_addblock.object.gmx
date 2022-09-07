@@ -64,6 +64,8 @@ weekday = "undefined"
             <string>/// Change sprite
 
 image_index = 0;
+
+window_set_cursor(cr_default)
 </string>
           </argument>
         </arguments>
@@ -89,6 +91,8 @@ image_index = 0;
             <string>/// Change sprite
 
 image_index = 1;
+
+window_set_cursor(cr_handpoint)
 </string>
           </argument>
         </arguments>

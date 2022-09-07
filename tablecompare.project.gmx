@@ -34,9 +34,12 @@
     <sprite>sprites\spr_saveIco</sprite>
     <sprite>sprites\spr_loadIco</sprite>
     <sprite>sprites\spr_checkboxIco</sprite>
+    <sprite>sprites\spr_windowscaleIco</sprite>
+    <sprite>sprites\spr_appIco</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgts_table</background>
+    <background>background\bg_appico</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -68,7 +71,10 @@
     <object>objects\obj_debugwatcher</object>
     <object>objects\obj_btn_snapvert</object>
     <object>objects\obj_windowresize</object>
+    <object>objects\obj_btn_resizewindow</object>
+    <object>objects\obj_btn_appPage</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>
   </rooms>
