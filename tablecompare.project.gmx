@@ -2,8 +2,9 @@
 <assets>
   <Configs name="configs">
     <Config>Configs\Default</Config>
+    <Config>Configs\debug</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="3" name="datafiles">
     <datafile>
       <name>window_resize_fix.html</name>
       <exists>-1</exists>
@@ -18,8 +19,51 @@
         <Config name="Default">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
+        <Config name="debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
       </ConfigOptions>
       <filename>window_resize_fix.html</filename>
+    </datafile>
+    <datafile>
+      <name>webconf.ini</name>
+      <exists>-1</exists>
+      <size>0</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>webconf.ini</filename>
+    </datafile>
+    <datafile>
+      <name>favicon.ico</name>
+      <exists>-1</exists>
+      <size>110497</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>favicon.ico</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -36,6 +80,8 @@
     <sprite>sprites\spr_checkboxIco</sprite>
     <sprite>sprites\spr_windowscaleIco</sprite>
     <sprite>sprites\spr_appIco</sprite>
+    <sprite>sprites\spr_downloadTableIco</sprite>
+    <sprite>sprites\spr_uploadTableIco</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgts_table</background>
@@ -56,7 +102,11 @@
     <script>scripts\scr_getScrolloffset.gml</script>
     <script>scripts\scr_codeToStr.gml</script>
     <script>scripts\print.gml</script>
+    <script>scripts\scr_minutesToTimecode.gml</script>
+    <script>scripts\scr_tableToJstring.gml</script>
+    <script>scripts\scr_jstringToTable.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_timetable</font>
   </fonts>
@@ -65,7 +115,9 @@
     <object>objects\obj_btn_addblock</object>
     <object>objects\obj_scrollcontroller</object>
     <object>objects\obj_btn_save</object>
+    <object>objects\obj_btn_saveOnline</object>
     <object>objects\obj_btn_load</object>
+    <object>objects\obj_btn_loadOnline</object>
     <object>objects\obj_btn_incrScroll</object>
     <object>objects\obj_btn_decrScroll</object>
     <object>objects\obj_debugwatcher</object>
@@ -73,12 +125,14 @@
     <object>objects\obj_windowresize</object>
     <object>objects\obj_btn_resizewindow</object>
     <object>objects\obj_btn_appPage</object>
+    <object>objects\obj_httphandler</object>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>
   </rooms>
-  <constants number="5">
+  <constants number="7">
+    <constant name="HTTP_REQ_TABLE_HASH">2</constant>
+    <constant name="WEB_PUT_TABLE_HASH">1</constant>
     <constant name="ERR_SAVEABORT">-201</constant>
     <constant name="ERR_LOADCANCELLED">-200</constant>
     <constant name="BLOCK_TOPY">32</constant>

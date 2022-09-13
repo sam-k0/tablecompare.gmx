@@ -130,7 +130,7 @@ for(var i = 0; i &lt; (24 * (60 / global.chunksize)) + 1; i ++)
     }
     else*/
     
-    draw_text(BLOCK_WIDTH / 2, liney, timestr)
+    draw_text(BLOCK_WIDTH / 2, liney, timestr + "#" + scr_minutesToTimecode(timemin))
     
 }
 
