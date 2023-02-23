@@ -30,6 +30,12 @@
     <Config name="debug">
       <CopyToMask>1048640</CopyToMask>
     </Config>
+    <Config name="web">
+      <CopyToMask>1048640</CopyToMask>
+    </Config>
+    <Config name="web_debug">
+      <CopyToMask>1048640</CopyToMask>
+    </Config>
   </ConfigOptions>
   <androidPermissions/>
   <IncludedResources/>
@@ -46,6 +52,12 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
         <Config name="debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web_debug">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>

@@ -12,6 +12,8 @@
   <texgroups>
     <texgroup0>0</texgroup0>
     <texgroup1>0</texgroup1>
+    <texgroup2>0</texgroup2>
+    <texgroup3>0</texgroup3>
   </texgroups>
   <ranges>
     <range0>32,127</range0>

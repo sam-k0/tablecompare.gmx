@@ -3,6 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
     <Config>Configs\debug</Config>
+    <Config>Configs\web</Config>
+    <Config>Configs\web_debug</Config>
   </Configs>
   <datafiles number="3" name="datafiles">
     <datafile>
@@ -20,6 +22,12 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
         <Config name="debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web_debug">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
@@ -42,6 +50,12 @@
         <Config name="debug">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
+        <Config name="web">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web_debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
       </ConfigOptions>
       <filename>webconf.ini</filename>
     </datafile>
@@ -60,6 +74,12 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
         <Config name="debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="web_debug">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
@@ -106,7 +126,6 @@
     <script>scripts\scr_tableToJstring.gml</script>
     <script>scripts\scr_jstringToTable.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_timetable</font>
   </fonts>
