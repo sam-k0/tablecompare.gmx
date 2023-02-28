@@ -102,6 +102,7 @@
     <sprite>sprites\spr_appIco</sprite>
     <sprite>sprites\spr_downloadTableIco</sprite>
     <sprite>sprites\spr_uploadTableIco</sprite>
+    <sprite>sprites\spr_reflection</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgts_table</background>
@@ -145,6 +146,7 @@
     <object>objects\obj_btn_resizewindow</object>
     <object>objects\obj_btn_appPage</object>
     <object>objects\obj_httphandler</object>
+    <object>objects\obj_loadinganim</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>
