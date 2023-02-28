@@ -1,7 +1,15 @@
 # tablecompare.gmx
 
 Lets you create, save and load timetables, thus making it easy to see at which time free timeslots are.
-A very nieche use-case but maybe useful to some people.
+A very nieche use-case but maybe useful to some people.<br>
+Now has a [web version](http://reflectionlink.glitch.me/editor.html)
+
+# main feature
+
+- Create and edit timetables
+- save and load from local files
+- use the online editor to view and edit
+- share a link to the table to other people
 
 # controls
 
@@ -19,3 +27,4 @@ A very nieche use-case but maybe useful to some people.
 - KNU Logo is property of KNU
 - window_resize_fix is created by YAL
 - (ununsed) MAX_WINAPI2 by hobbl
+- LoadingBar_Hook by YAL
