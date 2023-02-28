@@ -31,6 +31,7 @@ image_speed = 0;
 image_index = 0;
 eventid_starttime = -999;
 eventid_endtime = -9999;
+eventid_setname = -10000;
 last_block = noone;
 
 bhours_start = 0;
@@ -181,18 +182,7 @@ if (i_d == eventid_starttime)
             bhours_start = bhours;
             
             eventid_endtime = get_string_async("End time (HH:MM). Not using a colon (ex.: 90) will result in 1 hour and 30 minutes.", "9:30") 
-            
-            /*var totaltimemin = (bhours*60 + bminutes);
-            var chunktime = 30; // min of one chunk
-            var chunkspawnsize = 64;
-            var chunks = totaltimemin div chunktime; // one chunk = 30 min
-            var rest = totaltimemin mod chunktime; // the rest
-            var yspawn = chunks * chunkspawnsize + (rest / chunktime)*chunkspawnsize;
-            
-            last_block = instance_create(x - BLOCK_WIDTH/2, yspawn, obj_block);
-            last_block.starttime = date_create_datetime(2022,0,0,bhours, bminutes, 0); // create date
-            last_block.yoffset = yspawn;*/
-            
+         
         }
         else
         {
@@ -242,8 +232,10 @@ if (i_d == eventid_endtime)
             
             bminutes_end = bminutes;
             bhours_end = bhours;
-            // Create the block with given times
-            scr_createBlock(bhours_start, bminutes_start, bhours_end, bminutes_end);
+            
+            
+            // ask for a title!!!
+            eventid_setname = get_string_async("Set a title:", "appointment") 
             
         }
         else
@@ -257,6 +249,32 @@ if (i_d == eventid_endtime)
         show_debug_message("Add aborted: User cancelled")
     }
 }
+
+// Set name
+if (i_d == eventid_setname)
+{
+    if ds_map_find_value(async_load, "status") // okay
+    {
+        if ds_map_find_value(async_load, "result") != "" // not empty
+        {
+            var title = ds_map_find_value(async_load, "result"); // get the val
+            
+            // Create the block with given times
+            scr_createBlock(bhours_start, bminutes_start, bhours_end, bminutes_end, title);
+            
+        }
+        else
+        {
+            // abort
+            show_debug_message("Add aborted: No string supplied");
+        }
+    }
+    else
+    {
+        show_debug_message("Add aborted: User cancelled")
+    }
+}
+
 
 
 

@@ -26,6 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>text = "Toggle#Fullscreen"
+
+if(WEB)
+{
+// resizing the window on web is so fucking janky holy shit
+    instance_destroy()
+}
 </string>
           </argument>
         </arguments>

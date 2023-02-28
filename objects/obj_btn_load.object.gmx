@@ -28,6 +28,11 @@
             <string>/// Setup
 text = "Load"
 event_savebtn = -99;
+
+if(WEB)
+{
+    image_alpha = 0.4;
+}
 </string>
           </argument>
         </arguments>
@@ -98,7 +103,12 @@ event_savebtn = -99;
             <kind>1</kind>
             <string>/// save to file
 
-//event_savebtn = get_string_async("Enter name to load timetable: ", "mytable");
+
+if(WEB)
+{
+    show_message_async("Web version cannot load local files.")
+    exit;
+}
 
 file = get_open_filename("Timetable|*.table", "");
 

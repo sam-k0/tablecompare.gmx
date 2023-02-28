@@ -146,7 +146,6 @@
     <object>objects\obj_btn_resizewindow</object>
     <object>objects\obj_btn_appPage</object>
     <object>objects\obj_httphandler</object>
-    <object>objects\obj_loadinganim</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tableCreate</room>

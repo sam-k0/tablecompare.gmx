@@ -28,6 +28,11 @@
             <string>/// Setup
 text = "Save"
 event_savebtn = -99;
+
+if(WEB)
+{
+    image_alpha = 0.4;
+}
 </string>
           </argument>
         </arguments>
@@ -98,7 +103,11 @@ event_savebtn = -99;
             <kind>1</kind>
             <string>/// save to file
 
-//event_savebtn = get_string_async("Enter name to save timetable as: ", "mytable");
+if(WEB)
+{
+    show_message_async("Web version cannot save files.#Use the 'upload' to save!")
+    exit;
+}
 
 file = get_save_filename("Timetable|*.table", "");
 

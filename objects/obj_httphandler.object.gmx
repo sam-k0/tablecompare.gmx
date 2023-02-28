@@ -3,7 +3,7 @@
   <spriteName>spr_reflection</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -31,7 +31,7 @@ isLoading = false;
 reqtype = -99; // put table, get table etc, numbers
 webrequest = -99; // event ids from GM
 lastTableHash = "";
-
+alpha = 1// for drawing loading anim
 dialogid = -99;
 
 // saving as user
@@ -63,7 +63,7 @@ if(WEB == 0)
     if(file_exists("webconf.ini"))
     {
         ini_open("webconf.ini")
-        baseurl = ini_read_string("websvc","url","http://reflectionlink.herokuapp.com/")
+        baseurl = ini_read_string("websvc","url","http://reflectionlink.glitch.me/")
         ini_close()
     }
     
@@ -146,11 +146,6 @@ if(!isLoading)
     // also save the hash for link
     lastTableHash = jhash;
     
-    /*
-    var content = "hash="+string(maphash)+"&amp;songname="+string(songname)+"&amp;songartist="+string(songartist)+"&amp;score="+string(playerscore)+"&amp;playername="+string(playername)
-    webrequest = http_post_string("http://localhost:3000/Scores",content)
-    */
-    
     
     var putMap = ds_map_create();
     ds_map_add(putMap,"username", username)
@@ -198,10 +193,9 @@ else
             <kind>1</kind>
             <string>if(isLoading)
 {
-    visible =true
+    alpha += 0.002;
+    alpha %= 1
 }
-else
-{visible = false}
 </string>
           </argument>
         </arguments>
@@ -324,6 +318,38 @@ switch(reqtype)
     
     break;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(isLoading) // if we are communicating with the server
+{
+    draw_set_alpha(alpha)
+    draw_sprite(sprite_index, 0, x , y)   
+    draw_set_alpha(1)
+    draw_set_halign(fa_center)
+    draw_text(x,y+16,"please wait")
+    draw_set_valign(fa_left)
+}
+
 </string>
           </argument>
         </arguments>
