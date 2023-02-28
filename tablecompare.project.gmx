@@ -89,6 +89,7 @@
   <NewExtensions>
     <extension index="0">extensions\Max winAPI 2</extension>
     <extension index="1">extensions\window_resize_fix</extension>
+    <extension index="2">extensions\ImageLoadBar</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
